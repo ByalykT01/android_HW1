@@ -63,7 +63,7 @@
             android:id="@+id/checkboxTerms"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="By checking the box you agree to our Terms and Conditions."
+            android:text="By checking this box you agree to our Terms and Conditions."
             android:textSize="11sp"
             android:layout_weight="1" />
     </LinearLayout>
