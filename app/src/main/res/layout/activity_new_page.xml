@@ -11,8 +11,8 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
         android:layout_marginBottom="23dp"
-        android:text="Next"
         android:backgroundTint="#6C63FF"
+        android:text="Next"
         app:layout_constraintBottom_toTopOf="@+id/textAlreadyMember"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -21,13 +21,13 @@
         android:id="@+id/textAlreadyMember"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginStart="73dp"
         android:layout_marginEnd="95dp"
         android:layout_marginBottom="58dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:id="@+id/textAlreadyMemberPrompt"
@@ -41,8 +41,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=" Log In"
-            android:textSize="13sp"
-            android:textColor="@android:color/holo_purple" />
+            android:textColor="@android:color/holo_purple"
+            android:textSize="13sp" />
     </LinearLayout>
 
 
@@ -50,11 +50,11 @@
         android:id="@+id/textOptionsSignUp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginStart="30dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="35dp"
         android:layout_marginBottom="40dp"
-        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/buttonNext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -63,65 +63,65 @@
             android:id="@+id/checkboxTerms"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="By checking this box you agree to our Terms and Conditions."
-            android:textSize="11sp"
-            android:layout_weight="1" />
+            android:textSize="11sp" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/form"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_marginStart="30dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="17dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/textOptionsSignUp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/textOptionsSignUp">
+        app:layout_constraintStart_toStartOf="parent">
 
         <EditText
             android:id="@+id/editTextFullName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Full Name"
-            android:padding="10dp"
+            android:layout_weight="1"
             android:background="@drawable/edit_text_bg"
-            android:layout_weight="1"/>
+            android:hint="Full Name"
+            android:padding="10dp" />
 
         <EditText
             android:id="@+id/editTextEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:layout_weight="1"
+            android:background="@drawable/edit_text_bg"
             android:hint="Valid Email"
             android:inputType="textEmailAddress"
-            android:padding="10dp"
-            android:layout_marginTop="19dp"
-            android:background="@drawable/edit_text_bg"
-            android:layout_weight="1"/>
+            android:padding="10dp" />
 
         <EditText
             android:id="@+id/editTextPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:layout_weight="1"
+            android:background="@drawable/edit_text_bg"
             android:hint="Phone Number"
             android:inputType="phone"
-            android:padding="10dp"
-            android:layout_marginTop="19dp"
-            android:background="@drawable/edit_text_bg"
-            android:layout_weight="1"/>
+            android:padding="10dp" />
 
         <EditText
             android:id="@+id/editTextPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:layout_weight="1"
+            android:background="@drawable/edit_text_bg"
             android:hint="Strong Password"
             android:inputType="textPassword"
-            android:padding="10dp"
-            android:layout_marginTop="19dp"
-            android:background="@drawable/edit_text_bg"
-            android:layout_weight="1"/>
+            android:padding="10dp" />
     </LinearLayout>
 
     <ImageView
@@ -139,9 +139,9 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_marginStart="120dp"
         android:layout_marginBottom="65dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/form"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -156,9 +156,9 @@
             android:id="@+id/textCreateAccount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             android:text="by creating a free account."
-            android:textSize="14sp"
-            android:layout_marginTop="4dp" />
+            android:textSize="14sp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
