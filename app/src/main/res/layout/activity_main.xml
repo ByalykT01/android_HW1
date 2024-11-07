@@ -93,26 +93,41 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <EditText
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/editTextEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/edit_text_bg"
             android:hint="Email"
             android:inputType="textEmailAddress"
-            android:padding="12dp" />
+            android:padding="12dp"
+            app:boxCornerRadiusBottomEnd="5pt"
+            app:boxCornerRadiusBottomStart="5pt"
+            app:boxCornerRadiusTopEnd="5pt"
+            app:boxCornerRadiusTopStart="5pt">
 
-        <EditText
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/editTextPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:layout_weight="1"
-            android:background="@drawable/edit_text_bg"
             android:hint="Password"
             android:inputType="textPassword"
-            android:padding="12dp" />
+            android:padding="12dp"
+            app:boxCornerRadiusBottomEnd="5pt"
+            app:boxCornerRadiusBottomStart="5pt"
+            app:boxCornerRadiusTopEnd="5pt"
+            app:boxCornerRadiusTopStart="5pt">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
     <ImageView
