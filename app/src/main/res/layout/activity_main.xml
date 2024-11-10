@@ -7,18 +7,22 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonNext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
         android:layout_marginBottom="23dp"
         android:backgroundTint="#6C63FF"
-        android:text="Button"
+        android:text="NEXT"
+        app:icon="@drawable/ic_arrow_right"
+        app:iconGravity="textEnd"
+        app:iconPadding="8dp"
+        app:iconTint="@color/white"
+        android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/textReg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
 
     <LinearLayout
         android:id="@+id/textReg"
@@ -103,7 +107,10 @@
             app:boxCornerRadiusBottomEnd="5pt"
             app:boxCornerRadiusBottomStart="5pt"
             app:boxCornerRadiusTopEnd="5pt"
-            app:boxCornerRadiusTopStart="5pt">
+            app:boxCornerRadiusTopStart="5pt"
+            app:endIconDrawable="@drawable/ic_mail"
+            app:endIconMode="custom"
+            app:startIconContentDescription="Mail">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -121,7 +128,10 @@
             app:boxCornerRadiusBottomEnd="5pt"
             app:boxCornerRadiusBottomStart="5pt"
             app:boxCornerRadiusTopEnd="5pt"
-            app:boxCornerRadiusTopStart="5pt">
+            app:boxCornerRadiusTopStart="5pt"
+            app:endIconDrawable="@drawable/ic_lock"
+            app:endIconMode="custom"
+            app:startIconContentDescription="Lock">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"

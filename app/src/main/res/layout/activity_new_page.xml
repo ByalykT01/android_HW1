@@ -5,14 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonNext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
         android:layout_marginBottom="13dp"
         android:backgroundTint="#6C63FF"
-        android:text="Next"
+        android:text="NEXT"
+        app:icon="@drawable/ic_arrow_right"
+        app:iconGravity="textEnd"
+        app:iconPadding="8dp"
+        app:iconTint="@color/white"
+        android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/textAlreadyMember"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -86,11 +91,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Full Name"
+            android:paddingBottom="2pt"
             app:boxCornerRadiusBottomEnd="5pt"
             app:boxCornerRadiusBottomStart="5pt"
             app:boxCornerRadiusTopEnd="5pt"
             app:boxCornerRadiusTopStart="5pt"
-            android:paddingBottom="2pt">
+            app:endIconDrawable="@drawable/ic_user"
+            app:endIconMode="custom"
+            app:startIconContentDescription="User">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -104,11 +112,14 @@
             android:layout_height="wrap_content"
             android:hint="Email"
             android:inputType="textEmailAddress"
+            android:paddingBottom="2pt"
             app:boxCornerRadiusBottomEnd="5pt"
             app:boxCornerRadiusBottomStart="5pt"
             app:boxCornerRadiusTopEnd="5pt"
             app:boxCornerRadiusTopStart="5pt"
-            android:paddingBottom="2pt">
+            app:endIconDrawable="@drawable/ic_mail"
+            app:endIconMode="custom"
+            app:startIconContentDescription="Mail">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -122,11 +133,14 @@
             android:layout_height="wrap_content"
             android:hint="Phone Number"
             android:inputType="phone"
+            android:paddingBottom="2pt"
             app:boxCornerRadiusBottomEnd="5pt"
             app:boxCornerRadiusBottomStart="5pt"
             app:boxCornerRadiusTopEnd="5pt"
             app:boxCornerRadiusTopStart="5pt"
-            android:paddingBottom="2pt">
+            app:endIconDrawable="@drawable/ic_smartphone"
+            app:endIconMode="custom"
+            app:startIconContentDescription="smartphone">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -140,11 +154,14 @@
             android:layout_height="wrap_content"
             android:hint="Strong Password"
             android:inputType="textPassword"
+            android:paddingBottom="2pt"
             app:boxCornerRadiusBottomEnd="5pt"
             app:boxCornerRadiusBottomStart="5pt"
             app:boxCornerRadiusTopEnd="5pt"
             app:boxCornerRadiusTopStart="5pt"
-            android:paddingBottom="2pt">
+            app:endIconDrawable="@drawable/ic_lock"
+            app:endIconMode="custom"
+            app:startIconContentDescription="Lock">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
