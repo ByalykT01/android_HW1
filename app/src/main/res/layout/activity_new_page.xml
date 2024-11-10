@@ -5,14 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonNext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
-        android:layout_marginBottom="23dp"
-        android:text="Next"
+        android:layout_marginBottom="13dp"
         android:backgroundTint="#6C63FF"
+        android:text="NEXT"
+        android:textAlignment="center"
+        app:icon="@drawable/ic_arrow_right"
+        app:iconGravity="textEnd"
+        app:iconPadding="8dp"
+        app:iconTint="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/textAlreadyMember"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -21,13 +26,13 @@
         android:id="@+id/textAlreadyMember"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginStart="73dp"
         android:layout_marginEnd="95dp"
-        android:layout_marginBottom="58dp"
+        android:layout_marginBottom="45dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:id="@+id/textAlreadyMemberPrompt"
@@ -41,8 +46,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=" Log In"
-            android:textSize="13sp"
-            android:textColor="@android:color/holo_purple" />
+            android:textColor="@android:color/holo_purple"
+            android:textSize="13sp" />
     </LinearLayout>
 
 
@@ -50,11 +55,11 @@
         android:id="@+id/textOptionsSignUp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginStart="30dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="35dp"
         android:layout_marginBottom="40dp"
-        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/buttonNext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -63,65 +68,107 @@
             android:id="@+id/checkboxTerms"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="By checking this box you agree to our Terms and Conditions."
-            android:textSize="11sp"
-            android:layout_weight="1" />
+            android:textSize="11sp" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/form"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_marginStart="30dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="17dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/textOptionsSignUp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/textOptionsSignUp">
+        app:layout_constraintStart_toStartOf="parent">
 
-        <EditText
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/editTextFullName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Full Name"
-            android:padding="10dp"
-            android:background="@drawable/edit_text_bg"
-            android:layout_weight="1"/>
+            android:paddingBottom="2pt"
+            app:boxCornerRadiusBottomEnd="5pt"
+            app:boxCornerRadiusBottomStart="5pt"
+            app:boxCornerRadiusTopEnd="5pt"
+            app:boxCornerRadiusTopStart="5pt"
+            app:endIconDrawable="@drawable/ic_user"
+            app:endIconMode="custom"
+            app:startIconContentDescription="User">
 
-        <EditText
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/editTextEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Valid Email"
+            android:hint="Email"
             android:inputType="textEmailAddress"
-            android:padding="10dp"
-            android:layout_marginTop="19dp"
-            android:background="@drawable/edit_text_bg"
-            android:layout_weight="1"/>
+            android:paddingBottom="2pt"
+            app:boxCornerRadiusBottomEnd="5pt"
+            app:boxCornerRadiusBottomStart="5pt"
+            app:boxCornerRadiusTopEnd="5pt"
+            app:boxCornerRadiusTopStart="5pt"
+            app:endIconDrawable="@drawable/ic_mail"
+            app:endIconMode="custom"
+            app:startIconContentDescription="Mail">
 
-        <EditText
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/editTextPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Phone Number"
             android:inputType="phone"
-            android:padding="10dp"
-            android:layout_marginTop="19dp"
-            android:background="@drawable/edit_text_bg"
-            android:layout_weight="1"/>
+            android:paddingBottom="2pt"
+            app:boxCornerRadiusBottomEnd="5pt"
+            app:boxCornerRadiusBottomStart="5pt"
+            app:boxCornerRadiusTopEnd="5pt"
+            app:boxCornerRadiusTopStart="5pt"
+            app:endIconDrawable="@drawable/ic_smartphone"
+            app:endIconMode="custom"
+            app:startIconContentDescription="smartphone">
 
-        <EditText
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/editTextPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Strong Password"
             android:inputType="textPassword"
-            android:padding="10dp"
-            android:layout_marginTop="19dp"
-            android:background="@drawable/edit_text_bg"
-            android:layout_weight="1"/>
+            android:paddingBottom="2pt"
+            app:boxCornerRadiusBottomEnd="5pt"
+            app:boxCornerRadiusBottomStart="5pt"
+            app:boxCornerRadiusTopEnd="5pt"
+            app:boxCornerRadiusTopStart="5pt"
+            app:endIconDrawable="@drawable/ic_lock"
+            app:endIconMode="custom"
+            app:startIconContentDescription="Lock">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
     </LinearLayout>
 
     <ImageView
@@ -130,6 +177,7 @@
         android:layout_height="204dp"
         android:layout_marginStart="52dp"
         android:layout_marginBottom="20dp"
+        android:contentDescription="background image"
         app:layout_constraintBottom_toTopOf="@+id/form"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
@@ -139,9 +187,9 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_marginStart="120dp"
         android:layout_marginBottom="65dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/form"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -156,9 +204,9 @@
             android:id="@+id/textCreateAccount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             android:text="by creating a free account."
-            android:textSize="14sp"
-            android:layout_marginTop="4dp" />
+            android:textSize="14sp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

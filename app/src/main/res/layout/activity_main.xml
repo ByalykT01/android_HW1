@@ -7,30 +7,34 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonNext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
         android:layout_marginBottom="23dp"
-        android:text="Button"
         android:backgroundTint="#6C63FF"
+        android:text="NEXT"
+        android:textAlignment="center"
+        app:icon="@drawable/ic_arrow_right"
+        app:iconGravity="textEnd"
+        app:iconPadding="8dp"
+        app:iconTint="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/textReg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
 
     <LinearLayout
         android:id="@+id/textReg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginStart="73dp"
         android:layout_marginEnd="95dp"
         android:layout_marginBottom="58dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:id="@+id/textNewMember"
@@ -43,9 +47,9 @@
             android:id="@+id/textRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" Register now"
-            android:textSize="13sp"
-            android:textColor="@android:color/holo_purple" />
+            android:text="Register now"
+            android:textColor="@android:color/holo_purple"
+            android:textSize="13sp" />
 
     </LinearLayout>
 
@@ -53,11 +57,11 @@
         android:id="@+id/textOptionsLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginStart="30dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="35dp"
         android:layout_marginBottom="126dp"
-        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/buttonNext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -66,53 +70,74 @@
             android:id="@+id/checkboxRememberMe"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="remember me"
-            android:textSize="11sp"
-            android:layout_weight="1" />
+            android:textSize="11sp" />
 
         <TextView
             android:id="@+id/textForgotPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="Forget password?"
-            android:textSize="11sp"
             android:textColor="@android:color/holo_purple"
-            android:layout_weight="1" />
+            android:textSize="11sp" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/form"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_marginStart="30dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="17dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/textOptionsLogin"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/textOptionsLogin">
+        app:layout_constraintStart_toStartOf="parent">
 
-        <EditText
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/editTextEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email"
             android:inputType="textEmailAddress"
             android:padding="12dp"
-            android:background="@drawable/edit_text_bg"
-            android:layout_weight="1"/>
+            app:boxCornerRadiusBottomEnd="5pt"
+            app:boxCornerRadiusBottomStart="5pt"
+            app:boxCornerRadiusTopEnd="5pt"
+            app:boxCornerRadiusTopStart="5pt"
+            app:endIconDrawable="@drawable/ic_mail"
+            app:endIconMode="custom"
+            app:startIconContentDescription="Mail">
 
-        <EditText
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/editTextPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password"
             android:inputType="textPassword"
             android:padding="12dp"
-            android:layout_marginTop="25dp"
-            android:background="@drawable/edit_text_bg"
-            android:layout_weight="1"/>
+            app:boxCornerRadiusBottomEnd="5pt"
+            app:boxCornerRadiusBottomStart="5pt"
+            app:boxCornerRadiusTopEnd="5pt"
+            app:boxCornerRadiusTopStart="5pt"
+            app:endIconDrawable="@drawable/ic_lock"
+            app:endIconMode="custom"
+            app:startIconContentDescription="Lock">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
     <ImageView
@@ -131,10 +156,10 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-
         android:layout_marginStart="120dp"
+
         android:layout_marginBottom="65dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/form"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -149,9 +174,9 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             android:text="Sign in to access your account"
-            android:textSize="14sp"
-            android:layout_marginTop="4dp" />
+            android:textSize="14sp" />
     </LinearLayout>
 
 
