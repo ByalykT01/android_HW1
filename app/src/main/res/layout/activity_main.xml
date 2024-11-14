@@ -19,6 +19,7 @@
         app:icon="@drawable/ic_arrow_right"
         app:iconGravity="textEnd"
         app:iconPadding="8dp"
+        app:iconSize="12dp"
         app:iconTint="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/textReg"
         app:layout_constraintEnd_toEndOf="parent"
