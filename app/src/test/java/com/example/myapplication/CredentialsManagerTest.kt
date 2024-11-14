@@ -5,20 +5,34 @@ import org.junit.Test
 
 class CredentialsManagerTest {
     @Test
-    fun testEmptyEmail() {
+    fun givenEmptyEmail_thenReturnFalse() {
         val credentialsManager = CredentialsManager()
+        val email = ""
+        val isEmailValid = credentialsManager.isEmailValid(email)
         assertEquals(
             false,
-            credentialsManager.isEmailValid("")
+            isEmailValid
         )
     }
 
     @Test
-    fun wrongEmailFormat() {
+    fun givenCorrectEmail_thenReturnTrue() {
         val credentialsManager = CredentialsManager()
+        val email = "abc@gmail.com"
+        val isEmailValid = credentialsManager.isEmailValid(email)
+        assertEquals(
+            true,
+            isEmailValid
+        )
+    }
+    @Test
+    fun givenWrongEmail_thenReturnFalse() {
+        val credentialsManager = CredentialsManager()
+        val email = "a wrong email"
+        val isEmailValid = credentialsManager.isEmailValid(email)
         assertEquals(
             false,
-            credentialsManager.isEmailValid("not an email")
+            isEmailValid
         )
     }
 }
