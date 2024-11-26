@@ -10,6 +10,18 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
 class MainActivity : AppCompatActivity() {
+
+//    private val emailLayout: TextInputLayout
+//        get() = findViewById(R.id.enter_email)
+//    private val emailEditText: TextInputEditText
+//        get() = findViewById(R.id.emailEditText)
+//    private val passwordLayout: TextInputLayout
+//        get() = findViewById(R.id.enter_password)
+//    private val passwordEditText: TextInputEditText
+//        get() = findViewById(R.id.passwordEditText)
+//    private val nextButton: MaterialButton
+//        get() = findViewById(R.id.button_next)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -20,11 +32,6 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-//        val emailLayout: TextInputLayout = findViewById(R.id.emailInputLayout)
-//        val emailEditText: TextInputEditText = findViewById(R.id.emailEditText)
-//        val passwordLayout: TextInputLayout = findViewById(R.id.passwordInputLayout)
-//        val passwordEditText: TextInputEditText = findViewById(R.id.passwordEditText)
-//        val nextButton: MaterialButton = findViewById(R.id.buttonNext)
 //
 //        nextButton.setOnClickListener {
 //            val email = emailEditText.text.toString()
