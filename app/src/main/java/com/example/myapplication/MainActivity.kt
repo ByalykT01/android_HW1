@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -11,16 +12,18 @@ import com.google.android.material.textfield.TextInputLayout
 
 class MainActivity : AppCompatActivity() {
 
-//    private val emailLayout: TextInputLayout
-//        get() = findViewById(R.id.enter_email)
-//    private val emailEditText: TextInputEditText
-//        get() = findViewById(R.id.emailEditText)
-//    private val passwordLayout: TextInputLayout
-//        get() = findViewById(R.id.enter_password)
-//    private val passwordEditText: TextInputEditText
-//        get() = findViewById(R.id.passwordEditText)
-//    private val nextButton: MaterialButton
-//        get() = findViewById(R.id.button_next)
+    private val emailLayout: TextInputLayout
+        get() = findViewById(R.id.emailInputLayout)
+    private val emailEditText: TextInputEditText
+        get() = findViewById(R.id.emailEditText)
+    private val passwordLayout: TextInputLayout
+        get() = findViewById(R.id.passwordInputLayout)
+    private val passwordEditText: TextInputEditText
+        get() = findViewById(R.id.passwordEditText)
+    private val nextButton: MaterialButton
+        get() = findViewById(R.id.buttonNext)
+
+    private val credentialsManager = CredentialsManager(
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,44 +35,46 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-//
-//        nextButton.setOnClickListener {
-//            val email = emailEditText.text.toString()
-//            val password = passwordEditText.text.toString()
-//
-//            val isEmailValid = validateField(
-//                layout = emailLayout,
-//                value = email,
-//                errorMessage = "Invalid email input"
-//            ) { CredentialsManager.isEmailValid(it) }
-//
-//            val isPasswordValid = validateField(
-//                layout = passwordLayout,
-//                value = password,
-//                errorMessage = "Password cannot be empty"
-//            ) { CredentialsManager.isPasswordValid(it) }
-//
-//            if (isEmailValid && isPasswordValid) {
-//                val intent = Intent(this, EmptyActivity::class.java)
-//                startActivity(intent)
-//                finish()
-//            }
-//
-//    }
-//    private fun validateField(
-//        layout: TextInputLayout,
-//        value: String,
-//        errorMessage: String,
-//        validationLogic: (String) -> Boolean
-//    ): Boolean {
-//        return if (!validationLogic(value)) {
-//            layout.error = errorMessage
-//            layout.isErrorEnabled = true
-//            false
-//        } else {
-//            layout.isErrorEnabled = false
-//            layout.error = null
-//            true
-//        }
-//    }
-//}
+        nextButton.setOnClickListener {
+            val email = emailEditText.text.toString()
+            val password = passwordEditText.text.toString()
+
+            val isEmailValid = validateField(
+                layout = emailLayout,
+                value = email,
+                errorMessage = "Invalid email format"
+            ) { credentialsManager.isEmailValid(it) }
+
+            val isPasswordValid = validateField(
+                layout = passwordLayout,
+                value = password,
+                errorMessage = "Password must contain at least 8 characters, including uppercase, lowercase, number and special character"
+            ) { credentialsManager.isPasswordValid(it) }
+
+            if (isEmailValid && isPasswordValid) {
+                // Here you can add your login logic
+                // For example:
+                // val intent = Intent(this, YourNextActivity::class.java)
+                // startActivity(intent)
+                // finish()
+            }
+        }
+    }
+
+    private fun validateField(
+        layout: TextInputLayout,
+        value: String,
+        errorMessage: String,
+        validationLogic: (String) -> Boolean
+    ): Boolean {
+        return if (!validationLogic(value)) {
+            layout.error = errorMessage
+            layout.isErrorEnabled = true
+            false
+        } else {
+            layout.isErrorEnabled = false
+            layout.error = null
+            true
+        }
+    }
+}
