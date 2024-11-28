@@ -3,6 +3,10 @@ package com.example.myapplication
 import android.util.Patterns
 
 class CredentialsManager {
+    val credentials = mutableMapOf<String, String>(
+        //
+    )
+
     fun isEmailValid(mail: String): Boolean {
         val pattern = (
                 "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
