@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
     private val nextButton: MaterialButton
         get() = findViewById(R.id.buttonNext)
 
-    private val credentialsManager = CredentialsManager()
+    private val credentialsManager = CredentialsManager(
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
