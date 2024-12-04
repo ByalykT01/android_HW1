@@ -10,7 +10,7 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
-class MainActivity : AppCompatActivity() {
+class RegistrationActivity : AppCompatActivity() {
 
     private val emailLayout: TextInputLayout
         get() = findViewById(R.id.emailInputLayout)
@@ -20,25 +20,22 @@ class MainActivity : AppCompatActivity() {
         get() = findViewById(R.id.passwordInputLayout)
     private val passwordEditText: TextInputEditText
         get() = findViewById(R.id.passwordEditText)
-    private val nextButton: MaterialButton
+    private val registerButton: MaterialButton
         get() = findViewById(R.id.buttonNext)
-    private val registerText: MaterialButton
-        get() = findViewById(R.id.buttonRegister)
 
     private val credentialsManager = CredentialsManager()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
-
+        setContentView(R.layout.activity_register)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        nextButton.setOnClickListener {
+        registerButton.setOnClickListener {
             val email = emailEditText.text.toString()
             val password = passwordEditText.text.toString()
 
@@ -55,16 +52,18 @@ class MainActivity : AppCompatActivity() {
             ) { credentialsManager.isPasswordValid(it) }
 
             if (isEmailValid && isPasswordValid) {
-                val intent = Intent(this, EmptyActivity::class.java)
-                startActivity(intent)
-                finish()
-            }
-        }
+                val (success, message) = credentialsManager.register(email, password)
 
-        // Navigate to RegistrationActivity when "Register now" is clicked
-        registerText.setOnClickListener {
-            val intent = Intent(this, RegistrationActivity::class.java)
-            startActivity(intent)
+                if (success) {
+                    // Redirect to LoginActivity
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                } else {
+                    emailLayout.error = message
+                    emailLayout.isErrorEnabled = true
+                }
+            }
         }
     }
 
