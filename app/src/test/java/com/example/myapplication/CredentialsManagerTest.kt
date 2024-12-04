@@ -54,7 +54,10 @@ class CredentialsManagerTest {
             "noSpecial"
         )
         passwords.forEach { password ->
-            assertFalse("Failed for password: $password", credentialsManager.isPasswordValid(password))
+            assertFalse(
+                "Failed for password: $password",
+                credentialsManager.isPasswordValid(password)
+            )
         }
     }
 
@@ -65,7 +68,10 @@ class CredentialsManagerTest {
             "NoSpecialChars123"
         )
         passwords.forEach { password ->
-            assertFalse("Failed for password: $password", credentialsManager.isPasswordValid(password))
+            assertFalse(
+                "Failed for password: $password",
+                credentialsManager.isPasswordValid(password)
+            )
         }
     }
 
@@ -76,7 +82,10 @@ class CredentialsManagerTest {
             "NoNumbersHere!"
         )
         passwords.forEach { password ->
-            assertFalse("Failed for password: $password", credentialsManager.isPasswordValid(password))
+            assertFalse(
+                "Failed for password: $password",
+                credentialsManager.isPasswordValid(password)
+            )
         }
     }
 
@@ -89,7 +98,54 @@ class CredentialsManagerTest {
             "C!omplextest789"
         )
         passwords.forEach { password ->
-            assertTrue("Failed for password: $password", credentialsManager.isPasswordValid(password))
+            assertTrue(
+                "Failed for password: $password",
+                credentialsManager.isPasswordValid(password)
+            )
         }
+    }
+
+    @Test
+    fun givenNewValidEmailAndPassword_thenRegisterSuccessfully() {
+        val email = "test@example.com"
+        val password = "Strong@Pass123"
+
+        val (success, message) = credentialsManager.register(email, password)
+        assertTrue("Registration failed for valid credentials: $message", success)
+    }
+
+    @Test
+    fun givenDuplicateEmail_thenReturnError() {
+        val email = "test@example.com"
+        val password = "Strong@Pass123"
+
+        credentialsManager.register(email, password)
+        val (success, message) = credentialsManager.register(email.uppercase(), password)
+
+        assertFalse("Duplicate email registration succeeded unexpectedly", success)
+        assertEquals("Email is already registered", message)
+    }
+
+    @Test
+    fun givenInvalidEmail_thenReturnError() {
+        val email = "invalid_email"
+        val password = "Strong@Pass123"
+
+        val (success, message) = credentialsManager.register(email, password)
+        assertFalse("Invalid email registration succeeded unexpectedly", success)
+        assertEquals("Invalid email format", message)
+    }
+
+    @Test
+    fun givenInvalidPassword_thenReturnError() {
+        val email = "test@example.com"
+        val password = "weak"
+
+        val (success, message) = credentialsManager.register(email, password)
+        assertFalse("Invalid password registration succeeded unexpectedly", success)
+        assertEquals(
+            "Password must contain at least 8 characters, including uppercase, lowercase, number, and special character",
+            message
+        )
     }
 }
