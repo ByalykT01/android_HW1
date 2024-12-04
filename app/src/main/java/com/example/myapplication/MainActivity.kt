@@ -22,6 +22,8 @@ class MainActivity : AppCompatActivity() {
         get() = findViewById(R.id.passwordEditText)
     private val nextButton: MaterialButton
         get() = findViewById(R.id.buttonNext)
+    private val registerText: MaterialButton
+        get() = findViewById(R.id.buttonRegister)
 
     private val credentialsManager = CredentialsManager()
 
@@ -29,6 +31,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -52,7 +55,16 @@ class MainActivity : AppCompatActivity() {
             ) { credentialsManager.isPasswordValid(it) }
 
             if (isEmailValid && isPasswordValid) {
+                val intent = Intent(this, EmptyActivity::class.java)
+                startActivity(intent)
+                finish()
             }
+        }
+
+        // Navigate to RegistrationActivity when "Register now" is clicked
+        registerText.setOnClickListener {
+            val intent = Intent(this, RegistrationActivity::class.java)
+            startActivity(intent)
         }
     }
 
