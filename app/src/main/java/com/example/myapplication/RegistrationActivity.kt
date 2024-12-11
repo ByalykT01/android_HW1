@@ -23,7 +23,7 @@ class RegistrationActivity : AppCompatActivity() {
     private val registerButton: MaterialButton
         get() = findViewById(R.id.buttonNext)
 
-    private val credentialsManager = CredentialsManager()
+    private val credentialsManager = CredentialsManager(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,20 +42,20 @@ class RegistrationActivity : AppCompatActivity() {
             val isEmailValid = validateField(
                 layout = emailLayout,
                 value = email,
-                errorMessage = "Invalid email format"
+                errorMessage = getString(R.string.error_invalid_email_format)
             ) { credentialsManager.isEmailValid(it) }
 
             val isPasswordValid = validateField(
                 layout = passwordLayout,
                 value = password,
-                errorMessage = "Password must contain at least 8 characters, including uppercase, lowercase, number and special character"
+                errorMessage = getString(R.string.error_password_requirements)
             ) { credentialsManager.isPasswordValid(it) }
 
             if (isEmailValid && isPasswordValid) {
                 val (success, message) = credentialsManager.register(email, password)
 
                 if (success) {
-                    // Redirect to LoginActivity
+
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     finish()

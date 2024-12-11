@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
     private val registerText: MaterialButton
         get() = findViewById(R.id.buttonRegister)
 
-    private val credentialsManager = CredentialsManager()
+    private val credentialsManager = CredentialsManager(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,7 +61,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // Navigate to RegistrationActivity when "Register now" is clicked
         registerText.setOnClickListener {
             val intent = Intent(this, RegistrationActivity::class.java)
             startActivity(intent)
