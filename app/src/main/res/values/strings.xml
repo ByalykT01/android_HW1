@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">My Application</string>
+
+    <!-- Error Messages -->
+    <string name="error_invalid_email_format">Invalid email format</string>
+    <string name="error_password_requirements">Password must contain at least 8 characters, including uppercase, lowercase, number, and special character</string>
+    <string name="error_email_already_registered">Email is already registered</string>
+
+    <!-- Success Messages -->
+    <string name="registration_successful">Registration successful</string>
 </resources>

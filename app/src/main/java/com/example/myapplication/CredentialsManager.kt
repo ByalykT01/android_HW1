@@ -1,28 +1,27 @@
 package com.example.myapplication
 
-import android.util.Patterns
+import android.content.Context
 
-class CredentialsManager {
+class CredentialsManager(private val context: Context) {
     private val credentials = mutableMapOf<String, String>()
-
 
     fun register(email: String, password: String): Pair<Boolean, String> {
         if (!isEmailValid(email)) {
-            return false to "Invalid email format"
+            return false to context.getString(R.string.error_invalid_email_format)
         }
 
         if (!isPasswordValid(password)) {
-            return false to "Password must contain at least 8 characters, including uppercase, lowercase, number, and special character"
+            return false to context.getString(R.string.error_password_requirements)
         }
 
         val normalizedEmail = email.lowercase()
 
         if (credentials.containsKey(normalizedEmail)) {
-            return false to "Email is already registered"
+            return false to context.getString(R.string.error_email_already_registered)
         }
 
         credentials[normalizedEmail] = password
-        return true to "Registration successful"
+        return true to context.getString(R.string.registration_successful)
     }
 
     fun isEmailValid(email: String): Boolean {
