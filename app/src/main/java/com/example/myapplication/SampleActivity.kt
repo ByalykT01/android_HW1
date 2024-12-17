@@ -10,7 +10,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
 
-class SampleActivity : AppCompatActivity() {
+class SampleActivity : AppCompatActivity(), FragmentA.EventHandler {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -26,12 +26,21 @@ class SampleActivity : AppCompatActivity() {
 
             supportFragmentManager.commit {
                 if (currentFragment is FragmentA) {
-                    replace<FragmentB>(R.id.fragment_container_view)
+                    val fragment = FragmentB()
+                    replace(R.id.fragment_container_view, fragment)
                 } else {
-                    replace<FragmentA>(R.id.fragment_container_view)
+                    val fragment = FragmentA()
+                    replace(R.id.fragment_container_view, fragment)
                 }
                 addToBackStack(null)
             }
+        }
+    }
+
+    override fun onNavigateToBClicked() {
+        supportFragmentManager.commit {
+            replace<FragmentB>(R.id.fragment_container_view)
+            addToBackStack(null)
         }
     }
 }
