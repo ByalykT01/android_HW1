@@ -32,4 +32,6 @@
     <string name="switch_button">Switch</string>
     <string name="fragment_a">Fragment A</string>
     <string name="fragment_b">Fragment B</string>
+    <string name="share_recipe">Share Recipe</string>
+    <string name="recipe_details">Recipe Details</string>
 </resources>
