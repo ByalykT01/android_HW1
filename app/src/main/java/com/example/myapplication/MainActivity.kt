@@ -5,23 +5,21 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.commit
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
-class MainActivity : AppCompatActivity(),
-    LoginFragment.LoginEventHandler,
-    RegisterFragment.RegisterEventHandler,
-    RecipeAdapter.RecipeClickListener {
+class MainActivity : AppCompatActivity(), LoginFragment.LoginEventHandler,
+    RegisterFragment.RegisterEventHandler, RecipeAdapter.RecipeClickListener {
 
     val credentialsManager by lazy { CredentialsManager(this) }
-
-    private val recipes = listOf(
-        Recipe(1, "Spaghetti Carbonara", R.drawable.recipe1),
-        Recipe(2, "Chicken Curry", R.drawable.recipe2),
-        Recipe(3, "Caesar Salad", R.drawable.recipe3)
-    )
+    private val viewModel: RecipeViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,17 +31,48 @@ class MainActivity : AppCompatActivity(),
                 add(R.id.fragment_container_view, LoginFragment())
             }
         }
+
+        setupSearchView()
+        setupRecipeListObserver()
+    }
+
+    private fun setupSearchView() {
+        val searchView = findViewById<SearchView>(R.id.searchView)
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                query?.let { viewModel.updateSearchQuery(it) }
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                newText?.let { viewModel.updateSearchQuery(it) }
+                return true
+            }
+        })
+    }
+
+    private fun setupRecipeListObserver() {
+        lifecycleScope.launch {
+            viewModel.filteredRecipes.collectLatest { recipes ->
+                val recyclerView = findViewById<RecyclerView>(R.id.recipesRecyclerView)
+                recyclerView.adapter = RecipeAdapter(recipes, this@MainActivity)
+            }
+        }
     }
 
     private fun setupRecyclerView() {
         val recyclerView = findViewById<RecyclerView>(R.id.recipesRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = RecipeAdapter(recipes, this)
+        lifecycleScope.launch {
+            viewModel.filteredRecipes.collectLatest { recipes ->
+                recyclerView.adapter = RecipeAdapter(recipes, this@MainActivity)
+            }
+        }
     }
 
     override fun onLoginSuccess() {
         findViewById<View>(R.id.fragment_container_view).visibility = View.GONE
-        findViewById<RecyclerView>(R.id.recipesRecyclerView).visibility = View.VISIBLE
+        findViewById<View>(R.id.content_container).visibility = View.VISIBLE
         setupRecyclerView()
     }
 
@@ -59,12 +88,7 @@ class MainActivity : AppCompatActivity(),
         supportFragmentManager.popBackStack()
     }
 
-    // RecipeAdapter.RecipeClickListener implementations
     override fun onRecipeClick(recipe: Recipe) {
-        Toast.makeText(this, "Clicked recipe: ${recipe.id}", Toast.LENGTH_SHORT).show()
-        Log.d("Recipe", "Clicked recipe with id: ${recipe.id}")
-
-        // Optional: Navigate to recipe details
         val intent = Intent(this, RecipeDetailActivity::class.java).apply {
             putExtra("RECIPE_ID", recipe.id)
         }
@@ -72,24 +96,21 @@ class MainActivity : AppCompatActivity(),
     }
 
     override fun onLikeClick(recipe: Recipe) {
+        recipe.isLiked = !recipe.isLiked
         Toast.makeText(
-            this,
-            if (recipe.isLiked) "Liked recipe: ${recipe.id}"
-            else "Unliked recipe: ${recipe.id}",
-            Toast.LENGTH_SHORT
+            this, if (recipe.isLiked) "Liked recipe: ${recipe.title}"
+            else "Unliked recipe: ${recipe.title}", Toast.LENGTH_SHORT
         ).show()
-        Log.d("Recipe", "Toggled like for recipe with id: ${recipe.id}")
     }
 
     override fun onShareClick(recipe: Recipe) {
-        Toast.makeText(this, "Sharing recipe: ${recipe.id}", Toast.LENGTH_SHORT).show()
-        Log.d("Recipe", "Sharing recipe with id: ${recipe.id}")
-
         val shareIntent = Intent().apply {
             action = Intent.ACTION_SEND
-            putExtra(Intent.EXTRA_TEXT, "Check out this recipe: ${recipe.title}")
+            putExtra(
+                Intent.EXTRA_TEXT, "Check out this recipe: ${recipe.title}\n${recipe.description}"
+            )
             type = "text/plain"
         }
-        startActivity(Intent.createChooser(shareIntent, "Share Recipe"))
+        startActivity(Intent.createChooser(shareIntent, getString(R.string.share_recipe)))
     }
 }
